@@ -32,8 +32,8 @@ public class AppConfig {
     @Bean
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
-//        return new OrderServiceImpl(memberRepository(), discountPolicy());    // 6강코드
-        return  null;
+        return new OrderServiceImpl(memberRepository(), discountPolicy());    // 6강코드
+//        return  null;
     }
 
     @Bean

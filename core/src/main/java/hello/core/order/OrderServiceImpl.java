@@ -9,13 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-//  롬북에서 제공해주는 @RequiredArgsConstructor 어노테이션을 사용하면 생성자 코드를 자동으로 만들어 준다.
 public class OrderServiceImpl implements OrderService {
 
     // 생성자 주입
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("생성자 주입");
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
