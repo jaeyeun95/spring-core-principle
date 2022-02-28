@@ -6,9 +6,11 @@
 </head>
 <body>
 <h1>부분 포함</h1>
+<!-- th:insert는 태그 안에 copy를 넣는 것-->
 <h2>부분 포함 insert</h2>
 <div th:insert="~{template/fragment/footer :: copy}"></div>
 
+<!--replace는 div태그를 대체하는 것-->
 <h2>부분 포함 replace</h2>
 <div th:replace="~{template/fragment/footer :: copy}"></div>
 
