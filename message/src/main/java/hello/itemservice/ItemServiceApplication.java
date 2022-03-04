@@ -10,4 +10,13 @@ public class ItemServiceApplication {
 		SpringApplication.run(ItemServiceApplication.class, args);
 	}
 
+//	스프링에서 자동으로 MessageSource는 빈으로 등록해 준다.
+//	@Bean
+//	public MessageSource messageSource() {
+//		ResourceBundleMessageSource messageSource = new
+//				ResourceBundleMessageSource();
+//		messageSource.setBasenames("messages", "errors");
+//		messageSource.setDefaultEncoding("utf-8");
+//		return messageSource;
+//	}
 }
