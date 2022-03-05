@@ -1,6 +1,6 @@
 package hello.itemservice.message;
 
-import org.apache.tomcat.jni.Local;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,31 +24,31 @@ public class MessageSourceTest {
     }
 
     @Test
-    void notFoundMessageCode(){
-        assertThatThrownBy(() -> ms.getMessage("no_code", null, null)).isInstanceOf(NoSuchMessageException.class);
+    void notFoundMessageCode() {
+        assertThatThrownBy(() -> ms.getMessage("no_code", null, null))
+                .isInstanceOf(NoSuchMessageException.class);
     }
 
     @Test
-    void notFoundMessageCodeDefaultMessage(){
+    void notFoundMessageCodeDefaultMessage() {
         String result = ms.getMessage("no_code", null, "기본 메시지", null);
         assertThat(result).isEqualTo("기본 메시지");
     }
 
     @Test
-    void argumentMessage(){
+    void argumentMessage() {
         String message = ms.getMessage("hello.name", new Object[]{"Spring"}, null);
         assertThat(message).isEqualTo("안녕 Spring");
     }
 
-//   국제화
     @Test
-    void defaultLang(){
+    void defaultLang() {
         assertThat(ms.getMessage("hello", null, null)).isEqualTo("안녕");
         assertThat(ms.getMessage("hello", null, Locale.KOREA)).isEqualTo("안녕");
     }
 
     @Test
-    void enLang(){
+    void enLang() {
         assertThat(ms.getMessage("hello", null, Locale.ENGLISH)).isEqualTo("hello");
     }
 }
