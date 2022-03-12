@@ -75,7 +75,7 @@ public class ValidationItemControllerV3 {
         return "validation/v3/editForm";
     }
 
-    //    @PostMapping("/{itemId}/edit")
+    @PostMapping("/{itemId}/edit")
     public String edit(@PathVariable Long itemId, @Validated @ModelAttribute Item item, BindingResult bindingResult) {
 
         //특정 필드가 아닌 복합 룰 검증
@@ -86,8 +86,9 @@ public class ValidationItemControllerV3 {
             }
         }
 
+        //검증에 실패하면 다시 입력 폼으로
         if (bindingResult.hasErrors()) {
-            log.info("errors={}", bindingResult);
+            log.info("errors={} ", bindingResult);
             return "validation/v3/editForm";
         }
 
@@ -95,25 +96,7 @@ public class ValidationItemControllerV3 {
         return "redirect:/validation/v3/items/{itemId}";
     }
 
-    @PostMapping("/{itemId}/edit")
-    public String editV2(@PathVariable Long itemId, @ModelAttribute Item item, BindingResult bindingResult) {
-
-        //특정 필드가 아닌 복합 룰 검증
-        if (item.getPrice() != null && item.getQuantity() != null) {
-            int resultPrice = item.getPrice() * item.getQuantity();
-            if (resultPrice < 10000) {
-                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
-            }
-        }
-
-        if (bindingResult.hasErrors()) {
-            log.info("errors={}", bindingResult);
-            return "validation/v3/editForm";
-        }
-
-        itemRepository.update(itemId, item);
-        return "redirect:/validation/v3/items/{itemId}";
-    }
 
 }
+
 
