@@ -28,6 +28,7 @@ public class ApiExceptionController {
         return new MemberDto(id, "hello " + id);
     }
 
+
     @Data
     @AllArgsConstructor
     static class MemberDto {
