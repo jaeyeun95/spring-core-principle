@@ -22,5 +22,6 @@ class FieldLogTraceTest {
         TraceStatus status2 = trace.begin("hello2");
         trace.exception(status2, new IllegalStateException());
         trace.exception(status1, new IllegalStateException());
+        
     }
 }
