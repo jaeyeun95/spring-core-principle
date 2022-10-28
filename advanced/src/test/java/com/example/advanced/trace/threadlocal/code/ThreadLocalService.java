@@ -9,7 +9,7 @@ public class ThreadLocalService {
 
     public String logic(String name) {
         log.info("저장 name={} -> nameStore={} " ,name, nameStore.get());
-        nameStore.set(name);
+        nameStore.set(name); 
         log.info("조회 nameStore={}", nameStore.get());
         return nameStore.get();
     }
